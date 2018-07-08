@@ -15,6 +15,7 @@ void ofApp::setup(){
 void ofApp::update(){
     switch(MiromiMode){
         case IDLE:
+            slide.slideUpdate();
             break;
             
         case SHOT:
@@ -35,6 +36,7 @@ void ofApp::update(){
 void ofApp::draw(){
     switch(MiromiMode){
         case IDLE:
+            slide.slideDraw();
 //            for(int i = 0; i < (int)dir.size(); i++){
 //                images[i].draw((ofGetWindowWidth()/2)-((images[i].getWidth()*ofGetWindowHeight())/images[i].getHeight())/2, 0, (images[i].getWidth()*ofGetWindowHeight())/images[i].getHeight(), ofGetWindowHeight());
 //            }

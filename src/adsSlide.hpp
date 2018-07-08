@@ -10,15 +10,30 @@
 
 #include "ofMain.h"
 
+enum{
+    IMAGE = 0,
+    VIDEO
+};
+
+struct adsStr{
+    int kind = IMAGE;
+    int localNum;
+};
+
 class adsSlide : public ofBaseApp{
+private:
+    int slideTimeSet;
 public:
-    ofDirectory dirAdsImages, dirAdsVideos;
+    ofDirectory dirAds;
     vector<ofImage> images;
     vector<ofVideoPlayer> videos;
+    vector<adsStr> adsList; //이미지와 영상의 리스트를 관리한다.
+    
     
     int slideTime;
-    int totalAdsNum;
+    int prevTime;
     int currentAdsNum;
+    bool isSliding; //현재 움직이고 있는지 여부    
     
     adsSlide();
     void setDir(string str); //경로 셋팅

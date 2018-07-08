@@ -6,10 +6,18 @@
 //
 
 #include "adsSlide.hpp"
+
+/*
+ 클래스 초기화
+ */
+adsSlide::adsSlide(){
+    slideTime = 5;
+    ofLog() << "adsSlide Init";
+}
+
 /*
  셋팅한 경로의 이미지(jpg, png)와 영상(mp4)를 불러와서 vector로 셋팅해 둔다.
  */
-
 void adsSlide::setDir(string str){
     totalAdsNum = 0;
     currentAdsNum = 0;
@@ -47,4 +55,18 @@ void adsSlide::setDir(string str){
     }
     
     ofLog() << "total Ads Number : " << totalAdsNum;
+}
+
+void adsSlide::setTime(int sec){
+    
+}
+
+void adsSlide::slideUpdate(){
+    
+}
+
+void adsSlide::slideDraw(){
+    for(int i=0; i<totalAdsNum; i++){
+        
+    }
 }

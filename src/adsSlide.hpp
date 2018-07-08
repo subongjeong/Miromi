@@ -15,10 +15,17 @@ public:
     ofDirectory dirAdsImages, dirAdsVideos;
     vector<ofImage> images;
     vector<ofVideoPlayer> videos;
+    
+    int slideTime;
     int totalAdsNum;
     int currentAdsNum;
     
+    adsSlide();
     void setDir(string str); //경로 셋팅
+    void setTime(int sec);
+    
+    void slideUpdate();
+    void slideDraw();
 };
 
 #endif /* adsSlide_hpp */

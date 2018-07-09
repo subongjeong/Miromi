@@ -39,8 +39,8 @@ public:
     void setDir(string str); //경로 셋팅
     void setTime(int sec);
     
-    void slideUpdate();
-    void slideDraw();
+    void update();
+    void draw();
 };
 
 #endif /* adsSlide_hpp */

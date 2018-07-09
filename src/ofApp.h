@@ -1,11 +1,11 @@
 #pragma once
 #include "ofMain.h"
 #include "adsSlide.hpp"
+#include "mirrorShot.hpp"
 
 enum{
     IDLE = 0,
     SHOT,
-    PREVIEW,
     TEMPLATE,
     PRINT
 };
@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     adsSlide slide;
+    mirrorShot shot;
     
     int MiromiMode;
 };

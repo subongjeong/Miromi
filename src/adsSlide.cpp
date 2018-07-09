@@ -40,6 +40,7 @@ void adsSlide::setDir(string str){
             //영상을 벡터에 넣는다.
             ofVideoPlayer vid;
             vid.load(dirAds.getPath((i)));
+            vid.setLoopState(OF_LOOP_NONE);
             videos.push_back(vid);
             
             //광고리스트에 영상, 영상 벡터의 로컬위치값을 넣는다.
@@ -69,7 +70,7 @@ void adsSlide::setTime(int sec){
     slideTimeSet = sec;
 }
 
-void adsSlide::slideUpdate(){
+void adsSlide::update(){
     //슬라이드 타임 셋팅
     if(ofGetElapsedTimef() - prevTime > slideTime){
         if(currentAdsNum < adsList.size()-1)
@@ -98,14 +99,21 @@ void adsSlide::slideUpdate(){
     }
 }
 
-void adsSlide::slideDraw(){
+void adsSlide::draw(){
     switch (adsList[currentAdsNum].kind) {
         case IMAGE:
             images[adsList[currentAdsNum].localNum].draw(0,0);
             break;
             
         case VIDEO:
+            //세로 영상인데 넓은 쪽이 가로가 되어서 돌렸다. TODO:설정이 있는지 찾아볼 것
+            ofPushMatrix();
+            ofTranslate(videos[adsList[currentAdsNum].localNum].getHeight(), 0);
+            ofPushMatrix();
+            ofRotateZDeg(90);
             videos[adsList[currentAdsNum].localNum].draw(0,0);
+            ofPopMatrix();
+            ofPopMatrix();
             break;
     }
 }

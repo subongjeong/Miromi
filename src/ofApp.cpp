@@ -3,9 +3,11 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
+    ofSetFullscreen(true);
+    ofBackground(ofColor::black);
     
+    //ads setting
     slide.setDir("ads/");
-    ofBackground(ofColor::white);
     
     //대기 모드로 시작
     MiromiMode = IDLE;
@@ -15,13 +17,11 @@ void ofApp::setup(){
 void ofApp::update(){
     switch(MiromiMode){
         case IDLE:
-            slide.slideUpdate();
+            slide.update();
             break;
             
         case SHOT:
-            break;
-            
-        case PREVIEW:
+            shot.update();
             break;
             
         case TEMPLATE:
@@ -36,18 +36,13 @@ void ofApp::update(){
 void ofApp::draw(){
     switch(MiromiMode){
         case IDLE:
-            slide.slideDraw();
-//            for(int i = 0; i < (int)dir.size(); i++){
-//                images[i].draw((ofGetWindowWidth()/2)-((images[i].getWidth()*ofGetWindowHeight())/images[i].getHeight())/2, 0, (images[i].getWidth()*ofGetWindowHeight())/images[i].getHeight(), ofGetWindowHeight());
-//            }
+            slide.draw();
             break;
             
         case SHOT:
+            shot.draw();
             break;
-            
-        case PREVIEW:
-            break;
-            
+   
         case TEMPLATE:
             break;
             
@@ -80,12 +75,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mousePressed(int x, int y, int button){
     switch(MiromiMode){
         case IDLE:
+            MiromiMode++;
+            shot.sayCheese();
             break;
             
         case SHOT:
-            break;
-            
-        case PREVIEW:
+            shot.sayCheese();
             break;
             
         case TEMPLATE:

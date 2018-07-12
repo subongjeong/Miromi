@@ -14,7 +14,9 @@ enum{
     READY = -1,
     CHEESE = 0,
     COUNT,
-    STILL
+    STILL,
+    FRAME,
+    PRINT
 };
 
 class mirrorShot : public ofBaseApp{
@@ -22,17 +24,35 @@ public:
     mirrorShot();
     void update();
     void draw();
-    void sayCheese();
     void setTime(int sec);
+    void setShotCount(int cnt);
+    
+    void sayCheese();
+    void print();
+    bool getProcessDone();
     
     ofVideoGrabber camera;
     
     ofImage image_cheese;
     ofImage image_count[5];
     
+    ofFbo fboCut[2];
+    ofFbo fboFrame;
+    ofPixels pixels;
+    
+    
     int shotMode;
-    int delayTime;
+    
+    int cheeseTime;
+    int stillTime;
+    int printTime;
     int prevTime;
+    
+    bool isShot;
+    bool isDone;
+    
+    int shotCount;
+    int shotCountMax;
 };
 
 #endif /* mirrorShot_hpp */

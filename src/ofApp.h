@@ -5,9 +5,10 @@
 
 enum{
     IDLE = 0,
-    SHOT,
-    TEMPLATE,
-    PRINT
+    SHOT
+//    ,
+//    TEMPLATE,
+//    PRINT
 };
 
 class ofApp : public ofBaseApp{
@@ -32,5 +33,6 @@ class ofApp : public ofBaseApp{
     adsSlide slide;
     mirrorShot shot;
     
+    bool isFullscreen;
     int MiromiMode;
 };

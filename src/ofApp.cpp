@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
-    ofSetFullscreen(true);
+    ofSetFullscreen(isFullscreen);
     ofBackground(ofColor::black);
     
     //ads setting
@@ -22,13 +22,16 @@ void ofApp::update(){
             
         case SHOT:
             shot.update();
+            if(shot.getProcessDone()){
+                MiromiMode = IDLE;
+            }
             break;
-            
-        case TEMPLATE:
-            break;
-            
-        case PRINT:
-            break;
+//
+//        case TEMPLATE:
+//            break;
+//
+//        case PRINT:
+//            break;
     }
 }
 
@@ -42,18 +45,33 @@ void ofApp::draw(){
         case SHOT:
             shot.draw();
             break;
-   
-        case TEMPLATE:
-            break;
-            
-        case PRINT:
-            break;
-    }
+//
+//        case TEMPLATE:
+//            break;
+//
+//        case PRINT:
+//            break;
+    }    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    switch(key){
+        case ' ':
+            isFullscreen = !isFullscreen;
+            ofSetFullscreen(isFullscreen);
+            break;
+//
+//        case 'c':
+//            ofSaveScreen("photos/"+ofToString(ofGetMonth()) +"-"+ ofToString(ofGetDay()) +"-"+ ofToString(ofGetHours()) +"-"+ ofToString(ofGetMinutes()) +"-"+ ofToString(ofGetSeconds())+".png");
+//            break;
+            
+        case 'p':
+            //프린트 출력하는 명령어
+            //system (  "lpr sb.pdf");
+            //system (  "lp /Users/subongjeong/Developer/Openframeworks/of_v0.10.0_osx_release/apps/myApps/Miromi/bin/data/photos/7-9-19-57-27.png"  );
+            break;
+    }
 }
 
 //--------------------------------------------------------------
@@ -80,14 +98,15 @@ void ofApp::mousePressed(int x, int y, int button){
             break;
             
         case SHOT:
-            shot.sayCheese();
+            //임시
+            shot.print();
             break;
             
-        case TEMPLATE:
-            break;
-            
-        case PRINT:
-            break;
+//        case TEMPLATE:
+//            break;
+//
+//        case PRINT:
+//            break;
     }
 }
 

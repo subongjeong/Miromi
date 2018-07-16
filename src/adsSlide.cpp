@@ -11,11 +11,13 @@
  클래스 초기화
  */
 adsSlide::adsSlide(){
-    slideTimeSet = 5;
+    alpha = 255;
+    slideTimeSet = 10;
     slideTime = slideTimeSet;
     currentAdsNum = 0;
     isSliding = false;
     prevTime = ofGetElapsedTimef();
+    companyFrame.load("ui/companyFrame.png");
     ofLog() << "adsSlide Init";
 }
 
@@ -71,6 +73,15 @@ void adsSlide::setTime(int sec){
 }
 
 void adsSlide::update(){
+    //알파값 셋팅
+    if(ofGetElapsedTimef() - prevTime > slideTime*0.9){
+        if(alpha > 0)
+            alpha -= 10;
+    }else{
+        if(alpha < 255)
+            alpha += 10;
+    }
+    
     //슬라이드 타임 셋팅
     if(ofGetElapsedTimef() - prevTime > slideTime){
         if(currentAdsNum < adsList.size()-1)
@@ -100,13 +111,16 @@ void adsSlide::update(){
 }
 
 void adsSlide::draw(){
+    ofEnableAlphaBlending();
     switch (adsList[currentAdsNum].kind) {
         case IMAGE:
+            ofSetColor(255, 255, 255, alpha);
             images[adsList[currentAdsNum].localNum].draw(0,0);
             break;
             
         case VIDEO:
             //세로 영상인데 넓은 쪽이 가로가 되어서 돌렸다. TODO:설정이 있는지 찾아볼 것
+            ofSetColor(255, 255, 255, alpha);
             ofPushMatrix();
             ofTranslate(videos[adsList[currentAdsNum].localNum].getHeight(), 0);
             ofPushMatrix();
@@ -116,4 +130,7 @@ void adsSlide::draw(){
             ofPopMatrix();
             break;
     }
+    ofSetColor(255, 255, 255, 255);
+    companyFrame.draw(0,0,1080,1920);
+    ofDisableAlphaBlending();
 }

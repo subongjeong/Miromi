@@ -28,8 +28,9 @@ public:
     vector<ofImage> images;
     vector<ofVideoPlayer> videos;
     vector<adsStr> adsList; //이미지와 영상의 리스트를 관리한다.
-    
-    
+    ofImage companyFrame;
+        
+    int alpha;
     int slideTime;
     int prevTime;
     int currentAdsNum;

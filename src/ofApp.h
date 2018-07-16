@@ -3,8 +3,10 @@
 #include "adsSlide.hpp"
 #include "mirrorShot.hpp"
 
+
 enum{
     IDLE = 0,
+    TOUCHTOSTART,
     SHOT
 //    ,
 //    TEMPLATE,
@@ -33,6 +35,9 @@ class ofApp : public ofBaseApp{
     adsSlide slide;
     mirrorShot shot;
     
+    ofVideoPlayer touchToStart;
     bool isFullscreen;
+    bool isGui;
+    
     int MiromiMode;
 };
